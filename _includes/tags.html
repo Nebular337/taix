@@ -1,0 +1,5 @@
+{% if include.tags.size > 0 %}
+  <ul class="tags" aria-label="Tags" role="list">
+    {% for tag in include.tags %}<li>{{ tag | escape }}</li>{% endfor %}
+  </ul>
+{% endif %}
