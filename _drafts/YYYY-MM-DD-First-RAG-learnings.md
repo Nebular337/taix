@@ -1,4 +1,4 @@
-### My first experiment with RAG
+# My first experiment with RAG
 
 ## Starting point 
 I'd heard about RAG systems and a few variations thereof across various parts of AI Twitter. How to bring elements from a knowledge base into the context window of your LLM to improve the quality of outputs. 
@@ -14,5 +14,12 @@ The key pieces needed for the project were quickly identified as:
 - identify a chat model 
 - confirm approach to chunking and context length
 
-# The knowledge base
+### The knowledge base
 - There was no real formality to choosing the knowledge sources, it was a case of finding a few self help books that I was somewhat familiar with to start with, and then had the idea of spicing it up with a couple of blogs as well. It was all for personal use - I own copies of the books and .txt versions were easily available online. Likewise I found a couple of github repo's that already had .txt files of enough of the two blogs for the purpose I needed.  
+
+### Choosing the embedding model
+
+### Choosing the chat model
+
+
+### Chunking
