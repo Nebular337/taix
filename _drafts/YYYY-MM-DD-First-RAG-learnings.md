@@ -13,9 +13,15 @@ The key pieces needed for the project were quickly identified as:
 - identify a suitable embedding model 
 - identify a chat model 
 - confirm approach to chunking and context length
+- establish a means of storing the vectors.
+- create the RAG enhanced chat bot
+- implement it all for a budget as close to zero as possible!
 
 ### The knowledge base
 - There was no real formality to choosing the knowledge sources, it was a case of finding a few self help books that I was somewhat familiar with to start with, and then had the idea of spicing it up with a couple of blogs as well. It was all for personal use - I own copies of the books and .txt versions were easily available online. Likewise I found a couple of github repo's that already had .txt files of enough of the two blogs for the purpose I needed.  
+- Some of the sources still needed cleaning up, i did this through a mixture of manual changes by hand and, for some more repetitive changes a couple
+of short scripts. 
+- Once i was happy that the knowledge base was clean, it was time to do something with it. 
 
 ### Choosing the embedding model
 
@@ -23,3 +29,8 @@ The key pieces needed for the project were quickly identified as:
 
 
 ### Chunking
+- Chunking was the main challenge here with two different types of knowledge it was intuitive to have two different approaches to chunking.
+- The blog posts were all quite short so managing context length wasnt a huge concern -
+
+
+
