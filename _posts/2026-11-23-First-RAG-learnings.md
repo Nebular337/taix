@@ -46,7 +46,7 @@ The key pieces needed for the project were quickly identified as:
 - I gained a greater understanding of how simple RAG works and its limitations (e.g where questions are often quite different to the response, which is almost always true in tax where the client's question is typically something helpful like "I'm doing x, what tax issues are there?" and don't tend to include specific references to parts of the relevant tax law!). HyDE is obviously just one of a number of different ways to retrieve knowledge from a corpus of information but for this project it was a great way of reinforcing how RAG works and doesn't work.
 - Some more experience of using APIs to access information and parse the responses to extract the desired information.
 
-
+## A some of the useful parts of the code used in this project can be found at https://github.com/Nebular337/first-rag-learnings. The files removed are the rough drafts used to test and understand individual elements that went on to be used in the final product.  
 
 
 
