@@ -29,10 +29,22 @@ The key pieces needed for the project were quickly identified as:
 ### Choosing the embedding model
 - The model chosen was gemini-embedding-001. From memory this was because it was relatively new at the time and most importantly available for free for the amount of content I needed to chunk.
 - The initial test run of embedding was done in embed.py which includes some time management aspects looking to avoid rate limits on the free API and the embeddings were simply saved to a .txt file.
-- Once I understood how the API worked a bit better, embed_to_PG.py, we ran the full embedding process with the vectors saved into a postgres SQL database along with a document id for the underlying document. 
-
+- Once I understood how the API worked a bit better, using embed_to_PG.py I ran the full embedding process with the vectors saved into a postgres SQL database along with a document id for the underlying document. 
 
 ### Choosing the chat model
+- For similar, budget driven reasons, Gemini 2.5 flash and flash-lite were chosen as the chat models to use for the project.
+
+### The RAG tool
+- After a couple of quick experiments using only the embedding vector of the question itself, it became apparent that an extra step was needed as questions would often return no results (in part due to the limited number of sources admittedly). I was aware of HyDE as an improvement approach for RAG.
+- To implement this, the Flash-Lite model was used to create 150 token examples of the types of responses that could be expected from a business or health book on the topic given by the user. Given the knowledge base, this prompt was focused on business and health and encouraged the use of domain specific terminology. The Lite model was chosen due to the simplicity of the task required, being a case of essentially "take these initial seed words and produce more of them that are similar". The examples returned were then joined to increase the chance of overlapping terminology with the corpus. 
+- The combined examples were then turned into an embedding vector using the same gemini-embedding-001 model used for the underlying knowledge base. Cosine distance between that returned vector and the vectors of the knowledge base was then used to identify the most similar chunks to the synthetic responses. An arbitrary cosine distance of 0.35 (i.e. cosine similarity of 0.65) was used as a hard cut off.
+- I had then intended that the 20 closest matching results (or all of those within the cut off if less than 20) would be ranked using google's semantic ranker API to determine which knowledge chunks would go into the final context window. In practice the cosine distance test tended to produce few enough results that I didn't need to filter out and rank the chunks.  
+- The identified chunks along with a simple prompt were then passed to Gemini 2.5 Flash to provide the final user answer.
+
+## Learning
+- This project gave a great insight into some of the complexities of managing a knowledge base - which has given me a lot more context at work when discussing how the firm can best use its own knowledge.
+- I gained a greater understanding of how simple RAG works and its limitations (e.g where questions are often quite different to the response, which is almost always true in tax where the client's question is typically something helpful like "I'm doing x, what tax issues are there?" and don't tend to include specific references to parts of the relevant tax law!). HyDE is obviously just one of a number of different ways to retrieve knowledge from a corpus of information but for this project it was a great way of reinforcing how RAG works and doesn't work.
+- Some more experience of using APIs to access information and parse the responses to extract the desired information.
 
 
 
